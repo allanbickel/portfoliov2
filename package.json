@@ -10,7 +10,7 @@
 		}
 	},
 	"scripts": {
-		"start": "node server/index.js",
+		"start": "node backend/index.js",
 		"build": "cd frontend && yarn install && yarn build"
 	},
 	"engines": {
