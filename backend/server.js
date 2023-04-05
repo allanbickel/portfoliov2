@@ -5,6 +5,9 @@ const app = express();
 
 app.use(cors());
 
+app.use(express.static(path.resolve(__dirname, "../frontend/build")));
+app.use(express.static(path.resolve(__dirname, "../frontend/public")));
+
 app.get("/api", (req, res) => {
 	res.send("Hello, world!");
 });
