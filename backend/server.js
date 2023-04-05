@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 
+process.env.NODE_ENV = "production";
+
 const app = express();
 
 app.use(cors());
@@ -16,5 +18,5 @@ app.get("/api", (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-	console.log("Server is running on port $PORT");
+	console.log(`Server is running on port ${PORT} || ${process.env.NODE_ENV}`);
 });
