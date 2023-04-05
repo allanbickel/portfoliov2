@@ -1,0 +1,19 @@
+{
+	"name": "portfoliov2",
+	"description": "my personal work portfolio",
+	"version": "0.1.0",
+	"license": "MIT",
+	"env": {
+		"NPM_CONFIG_PRODUCTION": {
+			"description": "Set to false to install devDependencies",
+			"value": "true"
+		}
+	},
+	"scripts": {
+		"start": "node server/index.js",
+		"build": "cd frontend && yarn install && yarn build"
+	},
+	"engines": {
+		"node": "^18.15.0"
+	}
+}
