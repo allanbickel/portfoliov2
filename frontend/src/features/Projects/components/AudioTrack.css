@@ -1,0 +1,16 @@
+#waveform {
+	width: 100%;
+	max-width: 600px;
+}
+
+.play-btn {
+	width: 50px;
+	padding-right: 20px;
+}
+
+.track-name {
+	padding-right: 20px;
+	font-family: "Bebas Neue", sans-serif;
+	font-size: 28px;
+	color: #c5c5c5;
+}
