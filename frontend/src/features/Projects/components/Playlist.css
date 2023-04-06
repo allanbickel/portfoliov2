@@ -1,4 +1,4 @@
-#playlis-title {
+.playlist-title {
 	font-family: "Bebas Neue", sans-serif;
 	text-align: center;
 	color: #c5c5c5;
@@ -9,11 +9,24 @@
 .playlist-container {
 	display: flex;
 	flex-direction: column;
+	width: 75%;
 }
 
 .playback-container {
-	display: flex;
-	flex-direction: row;
+	position: relative;
 	justify-content: center;
 	align-items: center;
+	margin-bottom: 50px;
+}
+
+.playback-container > * {
+	margin: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+	.playlist-title {
+		margin: 20px;
+		padding-top: 0;
+		padding-bottom: 20px;
+	}
 }

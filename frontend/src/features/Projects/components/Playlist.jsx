@@ -50,19 +50,18 @@ function Playlist() {
 
 	return (
 		<>
-			<h1 id="playlis-title">Trilha Sonora Original</h1>
-			<ul className="playlist-container">
+			<h1 className="playlist-title">Trilha Sonora Original</h1>
+			<div className="playlist-container">
 				{audiofiles.map((filename, index) => (
-					<li key={filename}>
-						<AudioTrack
-							index={index}
-							filepath={`https://storage.googleapis.com/ost_fda/rascunhos/${filename}`}
-							isPlaying={isPlaying[index]}
-							handleTrackClick={() => handleTrackClick(index)}
-						/>
-					</li>
+					<AudioTrack
+						key={index}
+						index={index}
+						filepath={`https://storage.googleapis.com/ost_fda/rascunhos/${filename}`}
+						isPlaying={isPlaying[index]}
+						handleTrackClick={() => handleTrackClick(index)}
+					/>
 				))}
-			</ul>
+			</div>
 		</>
 	);
 }

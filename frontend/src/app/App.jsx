@@ -9,7 +9,7 @@ function App() {
 		<div id="container">
 			<Router>
 				<nav id="nav-bar">
-					<ul id="nav-buttons">
+					<ul className="nav-buttons">
 						<li>
 							<Link to="/">home</Link>
 						</li>
@@ -28,7 +28,7 @@ function App() {
 						<Route path="/about" element={<About />}></Route>
 					</Routes>
 				</main>
-				<footer className="footer">
+				<footer>
 					<ul>
 						<p>Contato:</p>
 						<li>

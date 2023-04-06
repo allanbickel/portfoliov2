@@ -1,16 +1,66 @@
-#waveform {
+.track-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	position: relative;
 	width: 100%;
-	max-width: 600px;
 }
 
 .play-btn {
+	position: absolute;
+	top: 28%;
+	left: -12%;
 	width: 50px;
-	padding-right: 20px;
+	height: fit-content;
+}
+
+.waveform {
+	width: 100%;
 }
 
 .track-name {
-	padding-right: 20px;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translate(0%, -65%);
 	font-family: "Bebas Neue", sans-serif;
-	font-size: 28px;
+	font-size: 24px;
 	color: #c5c5c5;
+}
+
+@media only screen and (max-width: 600px) {
+	.waveform-container {
+		width: 100%;
+		height: 100px;
+	}
+	.track-name-container {
+		flex: 1;
+	}
+
+	.track-name {
+		padding: 0;
+		margin: 0;
+		font-size: 18px;
+		text-align: center;
+		transform: translate(0%, -40%);
+	}
+
+	.play-btn {
+		padding: 0;
+		margin: 0;
+		top: 32%;
+		left: -23%;
+	}
+
+	.play-btn:focus {
+		outline: none;
+	}
+
+	#waveform {
+		width: 100%;
+		max-width: 300px;
+	}
 }

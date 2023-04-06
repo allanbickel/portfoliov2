@@ -13,6 +13,7 @@ const SoundWave = ({ filepath, isPlaying }) => {
 			progressColor: "#D6D6D6",
 			cursorWidth: 0,
 			waveColor: "#B4BBB4",
+			scrollParent: false,
 		});
 
 		wavesurfer.load(filepath);
@@ -26,14 +27,20 @@ const SoundWave = ({ filepath, isPlaying }) => {
 	useEffect(() => {
 		if (wavesurferInstance) {
 			if (isPlaying) {
-				wavesurferInstance.play();
+				if (!wavesurferInstance.isPlaying()) {
+					// add null check
+					wavesurferInstance.play();
+				}
 			} else {
-				wavesurferInstance.pause();
+				if (wavesurferInstance.isPlaying()) {
+					// add null check
+					wavesurferInstance.pause();
+				}
 			}
 		}
 	}, [wavesurferInstance, isPlaying]);
 
-	return <div id="waveform" ref={waveformRef}></div>;
+	return <div className="waveform" ref={waveformRef}></div>;
 };
 
 const PlayButton = ({ isPlaying, handleTrackClick }) => {
@@ -51,7 +58,6 @@ const PlayButton = ({ isPlaying, handleTrackClick }) => {
 				className="play-btn"
 				src={icon()}
 				onClick={handleTrackClick}
-				style={{ width: "50px" }}
 				alt="PLAY"
 			/>
 		</>
@@ -62,12 +68,17 @@ function AudioTrack({ filepath, isPlaying, handleTrackClick, index }) {
 	return (
 		<>
 			<div className="playback-container">
-				<p className="track-name">{filepath.split("/").pop().split(".")[0]}</p>
 				<PlayButton
 					isPlaying={isPlaying}
 					handleTrackClick={() => handleTrackClick(index)}
 				/>
-				<SoundWave filepath={filepath} isPlaying={isPlaying} />
+				<div className="track-container">
+					<p className="track-name">
+						{filepath.split("/").pop().split(".")[0]}
+					</p>
+
+					<SoundWave filepath={filepath} isPlaying={isPlaying} />
+				</div>
 			</div>
 		</>
 	);
