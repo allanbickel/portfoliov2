@@ -15,6 +15,19 @@ app.get("/api", (req, res) => {
 	res.send("Hello, world!");
 });
 
+app.get("/projects", (req, res) => {
+	const Projects =
+		require("../frontend/src/features/Projects/Projects").default;
+	const html = ReactDOMServer.renderToString(<Projects />);
+	res.send(html);
+});
+
+app.get("/about", (req, res) => {
+	const Projects = require("../frontend/src/features/About/About").default;
+	const html = ReactDOMServer.renderToString(<Projects />);
+	res.send(html);
+});
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
