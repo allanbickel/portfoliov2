@@ -4,7 +4,6 @@ import AudioTrack from "./AudioTrack.jsx";
 
 function Playlist() {
 	const audiofiles = [
-		"ost3.mp3",
 		"ost4.mp3",
 		"ost5.mp3",
 		"ost6.mp3",
