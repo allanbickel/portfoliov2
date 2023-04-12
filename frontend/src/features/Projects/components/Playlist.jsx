@@ -7,7 +7,6 @@ function Playlist() {
 	const [audiotrackArray, setAudiotrackArray] = useState([]);
 	const [arrayIsFilled, setArrayIsFilled] = useState(false);
 	const [displayBtn, setDisplayBtn] = useState({ index: 0 });
-	const [switchedPlayingTrack, setSwitcedPlayingTrack] = useState(null);
 	const [playBtnImgSrc, setPlayBtnImgSrc] = useState(
 		require("../../../assets/icons/playbtn.png")
 	);
