@@ -1,0 +1,14 @@
+.video-responsive {
+	margin: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+	.video-responsive {
+		margin: 20px;
+	}
+
+	iframe {
+		width: auto;
+		height: auto;
+	}
+}

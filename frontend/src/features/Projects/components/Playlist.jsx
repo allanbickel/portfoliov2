@@ -1,9 +1,20 @@
-import { useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState, useRef } from "react";
 import "./Playlist.css";
-import AudioTrack from "./AudioTrack.jsx";
+import AudioTrack from "./AudioTrack";
 
 function Playlist() {
-	const audiofiles = [
+	const [audiotrackArray, setAudiotrackArray] = useState([]);
+	const [arrayIsFilled, setArrayIsFilled] = useState(false);
+	const [displayBtn, setDisplayBtn] = useState({ index: 0 });
+	const [switchedPlayingTrack, setSwitcedPlayingTrack] = useState(null);
+	const [playBtnImgSrc, setPlayBtnImgSrc] = useState(
+		require("../../../assets/icons/playbtn.png")
+	);
+	const selectedTrackRef = useRef({ track: null, index: 0 });
+	const currPlayingTrackRef = useRef({ track: null, index: 0 });
+
+	const fileNames = [
 		"ost4.mp3",
 		"ost5.mp3",
 		"ost6.mp3",
@@ -12,54 +23,95 @@ function Playlist() {
 		"ost9.mp3",
 	];
 
-	const [currentTrackIndex, setCurrentTrackIndex] = useState(-1);
-	const [isPlaying, setIsPlaying] = useState(
-		Array(audiofiles.length).fill(false)
-	);
+	useEffect(() => {
+		if (audiotrackArray.length) {
+			setArrayIsFilled(true);
+		}
+	}, [audiotrackArray]);
 
 	useEffect(() => {
-		const handleKeyDown = (event) => {
-			if (event.code === "Space" || event.keyCode === 32) {
-				event.preventDefault();
-				const newIsPlaying = [...isPlaying];
-				newIsPlaying[currentTrackIndex] = !newIsPlaying[currentTrackIndex];
-				setIsPlaying(newIsPlaying);
+		if (arrayIsFilled) {
+			selectedTrackRef.current = { track: audiotrackArray[0], index: 0 };
+			currPlayingTrackRef.current = selectedTrackRef.current;
+		}
+	}, [arrayIsFilled]);
+
+	const handlePlayBtn = () => {
+		setDisplayBtn({ index: currPlayingTrackRef.current.index });
+		if (currPlayingTrackRef.current.track) {
+			if (currPlayingTrackRef.current.track.isPlaying()) {
+				setPlayBtnImgSrc(require("../../../assets/icons/pausebtn.png"));
+			} else {
+				setPlayBtnImgSrc(require("../../../assets/icons/playbtn.png"));
+			}
+		}
+	};
+
+	const handleTrackClick = (index) => {
+		selectedTrackRef.current = { track: audiotrackArray[index], index: index };
+	};
+
+	const handlePlayPause = () => {
+		if (selectedTrackRef.current.track) {
+			if (currPlayingTrackRef.current.track) {
+				if (
+					currPlayingTrackRef.current.index !== selectedTrackRef.current.index
+				) {
+					currPlayingTrackRef.current.track.pause();
+				}
+			}
+
+			selectedTrackRef.current.track.playPause();
+			currPlayingTrackRef.current = selectedTrackRef.current;
+			handlePlayBtn();
+		}
+	};
+
+	useEffect(() => {
+		const handleKeyDown = (e) => {
+			if (e.keyCode === 32) {
+				e.preventDefault();
+				handlePlayPause();
 			}
 		};
 
-		window.addEventListener("keydown", handleKeyDown);
+		document.addEventListener("keydown", handleKeyDown);
 
 		return () => {
-			window.removeEventListener("keydown", handleKeyDown);
+			document.removeEventListener("keydown", handleKeyDown);
 		};
-	});
-
-	const handleTrackClick = (index) => {
-		const newIsPlaying = [...isPlaying];
-		if (currentTrackIndex !== -1) {
-			newIsPlaying[currentTrackIndex] = false;
-		}
-		if (!isPlaying[index]) {
-			newIsPlaying[index] = true;
-		}
-
-		setIsPlaying(newIsPlaying);
-		setCurrentTrackIndex(index);
-	};
+	}, []);
 
 	return (
 		<>
 			<h1 className="playlist-title">Trilha Sonora Original</h1>
+
 			<div className="playlist-container">
-				{audiofiles.map((filename, index) => (
-					<AudioTrack
-						key={index}
-						index={index}
-						filepath={`https://storage.googleapis.com/ost_fda/rascunhos/${filename}`}
-						isPlaying={isPlaying[index]}
-						handleTrackClick={() => handleTrackClick(index)}
-					/>
-				))}
+				{fileNames.map((filename, index) => {
+					return (
+						<div className="playback-container" key={index}>
+							<div className="track-container" key={index}>
+								{displayBtn.index === index && (
+									<img
+										className="play-btn"
+										src={playBtnImgSrc}
+										alt="play"
+										onClick={() => handlePlayPause()}
+									/>
+								)}
+
+								<AudioTrack
+									filename={filename}
+									key={index}
+									index={index}
+									handleTrackClick={handleTrackClick}
+									audiotrackArray={audiotrackArray}
+									setAudiotrackArray={setAudiotrackArray}
+								/>
+							</div>
+						</div>
+					);
+				})}
 			</div>
 		</>
 	);

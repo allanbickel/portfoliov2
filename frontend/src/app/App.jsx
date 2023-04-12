@@ -16,16 +16,12 @@ function App() {
 						<li>
 							<Link to="/projects">Projetos</Link>
 						</li>
-						<li>
-							<Link to="/about">sobre</Link>
-						</li>
 					</ul>
 				</nav>
 				<main id="main-content">
 					<Routes>
 						<Route path="/" element={<Home />}></Route>
 						<Route path="/projects" element={<Projects />}></Route>
-						<Route path="/about" element={<About />}></Route>
 					</Routes>
 				</main>
 				<footer>

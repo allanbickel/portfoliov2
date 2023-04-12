@@ -23,7 +23,7 @@
 
 #nav-bar {
 	background-color: #1a3030;
-	height: 100px;
+	height: 80px;
 	margin: -10px;
 	margin-bottom: 20px;
 	display: flex;
@@ -39,8 +39,8 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: 75%;
-	padding: 0 20px;
+	width: 50%;
+	margin: 0;
 }
 
 .nav-buttons li,
@@ -100,14 +100,14 @@ ul {
 	}
 
 	#nav-bar {
-		height: 60%;
+		height: 70px;
 		margin-bottom: 0px;
 	}
 
 	.nav-buttons {
 		font-size: 20px;
 		color: #c5c5c5;
-		width: 75%;
+		width: 60%;
 		padding: 0 20px;
 	}
 }
