@@ -5,10 +5,9 @@ import "./AudioTrack.css";
 function AudioTrack({
 	filename,
 	index,
-	handleTrackClick,
+	handlePlayPause,
 	setAudiotrackArray,
 	audiotrackArray,
-	handlePlayPause,
 }) {
 	const [wavesurfer, setWavesurfer] = useState(null);
 	const containerRef = useRef(null);
@@ -45,8 +44,7 @@ function AudioTrack({
 			<div
 				className="waveform"
 				ref={containerRef}
-				onClick={() => handleTrackClick(index)}
-				onDoubleClick={() => handlePlayPause()}
+				onClick={() => handlePlayPause(index)}
 			></div>
 		</>
 	);

@@ -12,21 +12,53 @@
 	width: 75%;
 }
 
-.playback-container {
+.track-container {
 	position: relative;
-	justify-content: center;
-	align-items: center;
-	margin-bottom: 50px;
+	width: 100%;
+	margin-bottom: 80px;
 }
 
-.playback-container > * {
-	margin: 5px;
+.play-btn {
+	position: absolute;
+	top: 50%;
+	transform: translate(0, -50%);
+	left: -70px;
+	width: 50px;
+}
+
+.track-name {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translate(0%, -100%);
+	font-family: "Bebas Neue", sans-serif;
+	font-size: 24px;
+	color: #c5c5c5;
 }
 
 @media only screen and (max-width: 600px) {
+	.track-container {
+		margin-bottom: 30px;
+	}
+
+	.play-btn {
+		width: 40px;
+		left: -48px;
+	}
+
+	.play-btn:focus {
+		outline: none;
+	}
+
 	.playlist-title {
 		margin: 20px;
 		padding-top: 0;
 		padding-bottom: 20px;
+	}
+
+	.track-name {
+		font-size: 18px;
 	}
 }

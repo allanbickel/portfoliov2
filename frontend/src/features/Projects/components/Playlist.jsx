@@ -10,7 +10,7 @@ function Playlist() {
 	const [playBtnImgSrc, setPlayBtnImgSrc] = useState(
 		require("../../../assets/icons/playbtn.png")
 	);
-	const selectedTrackRef = useRef({ track: null, index: 0 });
+
 	const currPlayingTrackRef = useRef({ track: null, index: 0 });
 
 	const fileNames = [
@@ -30,28 +30,9 @@ function Playlist() {
 
 	useEffect(() => {
 		if (arrayIsFilled) {
-			selectedTrackRef.current = { track: audiotrackArray[0], index: 0 };
-			currPlayingTrackRef.current = selectedTrackRef.current;
+			currPlayingTrackRef.current = { track: audiotrackArray[0], index: 0 };
 		}
 	}, [arrayIsFilled]);
-
-	const handleTrackClick = (index) => {
-		selectedTrackRef.current = { track: audiotrackArray[index], index: index };
-	};
-
-	const handlePlayPause = () => {
-		if (selectedTrackRef.current.track) {
-			if (
-				currPlayingTrackRef.current.index !== selectedTrackRef.current.index
-			) {
-				currPlayingTrackRef.current.track.pause();
-			}
-
-			selectedTrackRef.current.track.playPause();
-			currPlayingTrackRef.current = selectedTrackRef.current;
-			handlePlayBtnImg();
-		}
-	};
 
 	const handlePlayBtnImg = () => {
 		setDisplayBtn({ index: currPlayingTrackRef.current.index });
@@ -64,9 +45,23 @@ function Playlist() {
 		}
 	};
 
-	const handlePlayBtnClick = () => {
-		currPlayingTrackRef.current.track.playPause();
-		handlePlayBtnImg();
+	const handlePlayPause = (index) => {
+		if (currPlayingTrackRef.current.track) {
+			if (
+				Number.isInteger(index) &&
+				index !== currPlayingTrackRef.current.index
+			) {
+				currPlayingTrackRef.current.track.stop();
+
+				currPlayingTrackRef.current = {
+					track: audiotrackArray[index],
+					index: index,
+				};
+			}
+
+			currPlayingTrackRef.current.track.playPause();
+			handlePlayBtnImg();
+		}
 	};
 
 	useEffect(() => {
@@ -91,27 +86,26 @@ function Playlist() {
 			<div className="playlist-container">
 				{fileNames.map((filename, index) => {
 					return (
-						<div className="playback-container" key={index}>
-							<div className="track-container" key={index}>
-								{displayBtn.index === index && (
-									<img
-										className="play-btn"
-										src={playBtnImgSrc}
-										alt="play"
-										onClick={() => handlePlayBtnClick()}
-									/>
-								)}
-
-								<AudioTrack
-									filename={filename}
-									key={index}
-									index={index}
-									handleTrackClick={handleTrackClick}
-									audiotrackArray={audiotrackArray}
-									setAudiotrackArray={setAudiotrackArray}
-									handlePlayPause={handlePlayPause}
+						<div className="track-container" key={index}>
+							{displayBtn.index === index && (
+								<img
+									className="play-btn"
+									src={playBtnImgSrc}
+									alt="play"
+									onClick={() => handlePlayPause()}
 								/>
-							</div>
+							)}
+
+							<div className="track-name">{filename.split(".")[0]}</div>
+
+							<AudioTrack
+								filename={filename}
+								key={index}
+								index={index}
+								audiotrackArray={audiotrackArray}
+								setAudiotrackArray={setAudiotrackArray}
+								handlePlayPause={handlePlayPause}
+							/>
 						</div>
 					);
 				})}

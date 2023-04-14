@@ -12,6 +12,7 @@
 	align-items: center;
 	justify-content: center;
 	flex-grow: 1;
+	margin: 50px;
 }
 
 .main-text {
@@ -96,7 +97,7 @@ ul {
 @media only screen and (max-width: 600px) {
 	#main-content {
 		padding: 0;
-		margin: 20px;
+		margin: 0;
 	}
 
 	#nav-bar {
@@ -105,7 +106,7 @@ ul {
 	}
 
 	.nav-buttons {
-		font-size: 20px;
+		font-size: 25px;
 		color: #c5c5c5;
 		width: 60%;
 		padding: 0 20px;
