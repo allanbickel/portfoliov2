@@ -8,6 +8,7 @@ function AudioTrack({
 	handleTrackClick,
 	setAudiotrackArray,
 	audiotrackArray,
+	handlePlayPause,
 }) {
 	const [wavesurfer, setWavesurfer] = useState(null);
 	const containerRef = useRef(null);
@@ -36,6 +37,7 @@ function AudioTrack({
 			wavesurfer.load(filepath);
 			setAudiotrackArray((prevArray) => [...prevArray, wavesurfer]);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [wavesurfer]);
 
 	return (
@@ -44,6 +46,7 @@ function AudioTrack({
 				className="waveform"
 				ref={containerRef}
 				onClick={() => handleTrackClick(index)}
+				onDoubleClick={() => handlePlayPause()}
 			></div>
 		</>
 	);

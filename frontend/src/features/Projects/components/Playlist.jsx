@@ -35,7 +35,25 @@ function Playlist() {
 		}
 	}, [arrayIsFilled]);
 
-	const handlePlayBtn = () => {
+	const handleTrackClick = (index) => {
+		selectedTrackRef.current = { track: audiotrackArray[index], index: index };
+	};
+
+	const handlePlayPause = () => {
+		if (selectedTrackRef.current.track) {
+			if (
+				currPlayingTrackRef.current.index !== selectedTrackRef.current.index
+			) {
+				currPlayingTrackRef.current.track.pause();
+			}
+
+			selectedTrackRef.current.track.playPause();
+			currPlayingTrackRef.current = selectedTrackRef.current;
+			handlePlayBtnImg();
+		}
+	};
+
+	const handlePlayBtnImg = () => {
 		setDisplayBtn({ index: currPlayingTrackRef.current.index });
 		if (currPlayingTrackRef.current.track) {
 			if (currPlayingTrackRef.current.track.isPlaying()) {
@@ -46,24 +64,9 @@ function Playlist() {
 		}
 	};
 
-	const handleTrackClick = (index) => {
-		selectedTrackRef.current = { track: audiotrackArray[index], index: index };
-	};
-
-	const handlePlayPause = () => {
-		if (selectedTrackRef.current.track) {
-			if (currPlayingTrackRef.current.track) {
-				if (
-					currPlayingTrackRef.current.index !== selectedTrackRef.current.index
-				) {
-					currPlayingTrackRef.current.track.pause();
-				}
-			}
-
-			selectedTrackRef.current.track.playPause();
-			currPlayingTrackRef.current = selectedTrackRef.current;
-			handlePlayBtn();
-		}
+	const handlePlayBtnClick = () => {
+		currPlayingTrackRef.current.track.playPause();
+		handlePlayBtnImg();
 	};
 
 	useEffect(() => {
@@ -95,7 +98,7 @@ function Playlist() {
 										className="play-btn"
 										src={playBtnImgSrc}
 										alt="play"
-										onClick={() => handlePlayPause()}
+										onClick={() => handlePlayBtnClick()}
 									/>
 								)}
 
@@ -106,6 +109,7 @@ function Playlist() {
 									handleTrackClick={handleTrackClick}
 									audiotrackArray={audiotrackArray}
 									setAudiotrackArray={setAudiotrackArray}
+									handlePlayPause={handlePlayPause}
 								/>
 							</div>
 						</div>
