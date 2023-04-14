@@ -34,7 +34,7 @@ function Playlist() {
 		}
 	}, [arrayIsFilled]);
 
-	const handlePlayBtnImg = () => {
+	const togglePlayBtn = () => {
 		setDisplayBtn({ index: currPlayingTrackRef.current.index });
 		if (currPlayingTrackRef.current.track) {
 			if (currPlayingTrackRef.current.track.isPlaying()) {
@@ -60,7 +60,7 @@ function Playlist() {
 			}
 
 			currPlayingTrackRef.current.track.playPause();
-			handlePlayBtnImg();
+			togglePlayBtn();
 		}
 	};
 

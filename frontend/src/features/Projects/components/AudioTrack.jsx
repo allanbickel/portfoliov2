@@ -20,6 +20,7 @@ function AudioTrack({
 			cursorWidth: 0,
 			waveColor: "#B4BBB4",
 			scrollParent: false,
+			normalize: true,
 		});
 
 		setWavesurfer(ws);
@@ -32,10 +33,21 @@ function AudioTrack({
 	useEffect(() => {
 		const filepath = `https://storage.googleapis.com/ost_fda/rascunhos/${filename}`;
 
+		const updateWaveformSize = () => {
+			const containerWidth = document.getElementById(index).clientWidth;
+			const zoomLevel = containerWidth / wavesurfer.getDuration();
+			wavesurfer.zoom(zoomLevel);
+		};
+
 		if (!audiotrackArray[index] && wavesurfer) {
 			wavesurfer.load(filepath);
 			setAudiotrackArray((prevArray) => [...prevArray, wavesurfer]);
+			wavesurfer.on(
+				"ready",
+				window.addEventListener("resize", updateWaveformSize)
+			);
 		}
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [wavesurfer]);
 
@@ -45,6 +57,7 @@ function AudioTrack({
 				className="waveform"
 				ref={containerRef}
 				onClick={() => handlePlayPause(index)}
+				id={index}
 			></div>
 		</>
 	);
