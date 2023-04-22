@@ -46,14 +46,18 @@
 
 .nav-buttons li,
 .waveform,
-.play-btn {
+.play-btn,
+.skip-btn,
+.prev-btn {
 	user-select: none;
 	transition: filter 0.2s ease-in-out;
 }
 
 .nav-buttons li:hover,
 .waveform:hover,
-.play-btn:hover {
+.play-btn:hover,
+.skip-btn:hover,
+.prev-btn:hover {
 	filter: brightness(1.2);
 	cursor: pointer;
 }
