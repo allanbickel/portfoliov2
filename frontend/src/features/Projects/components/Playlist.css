@@ -26,6 +26,22 @@
 	width: 50px;
 }
 
+.skip-btn {
+	position: absolute;
+	top: 50%;
+	transform: translate(0, -50%);
+	left: 554px;
+	width: 40px;
+}
+
+.prev-btn {
+	position: absolute;
+	top: 50%;
+	transform: translate(0, -50%) scaleX(-1);
+	left: 520px;
+	width: 40px;
+}
+
 .track-name {
 	margin: 0;
 	padding: 0;

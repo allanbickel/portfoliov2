@@ -45,18 +45,45 @@ function Playlist() {
 		}
 	};
 
-	const handlePlayPause = (index) => {
+	const handlePlayPause = (index, { on = null }) => {
 		if (currPlayingTrackRef.current.track) {
-			if (
-				Number.isInteger(index) &&
-				index !== currPlayingTrackRef.current.index
-			) {
-				currPlayingTrackRef.current.track.stop();
+			if (Number.isInteger(index)) {
+				if (on === "click") {
+					if (index !== currPlayingTrackRef.current.index) {
+						currPlayingTrackRef.current.track.stop();
 
-				currPlayingTrackRef.current = {
-					track: audiotrackArray[index],
-					index: index,
-				};
+						currPlayingTrackRef.current = {
+							track: audiotrackArray[index],
+							index: index,
+						};
+					} else if (currPlayingTrackRef.current.track.isPlaying()) {
+						return null;
+					}
+				} else if (on === "prevbtn") {
+					currPlayingTrackRef.current.track.stop();
+
+					if (index > 0) {
+						currPlayingTrackRef.current = {
+							track: audiotrackArray[index - 1],
+							index: index - 1,
+						};
+					}
+				} else if (on === "skipbtn") {
+					currPlayingTrackRef.current.track.stop();
+
+					if (index < audiotrackArray.length - 1) {
+						currPlayingTrackRef.current = {
+							track: audiotrackArray[index + 1],
+							index: index + 1,
+						};
+						console.log(audiotrackArray.length);
+					} else {
+						currPlayingTrackRef.current = {
+							track: audiotrackArray[0],
+							index: 0,
+						};
+					}
+				}
 			}
 
 			currPlayingTrackRef.current.track.playPause();
@@ -68,7 +95,7 @@ function Playlist() {
 		const handleKeyDown = (e) => {
 			if (e.keyCode === 32) {
 				e.preventDefault();
-				handlePlayPause();
+				handlePlayPause(currPlayingTrackRef.current.index, { on: "space-bar" });
 			}
 		};
 
@@ -88,12 +115,26 @@ function Playlist() {
 					return (
 						<div className="track-container" key={index}>
 							{displayBtn.index === index && (
-								<img
-									className="play-btn"
-									src={playBtnImgSrc}
-									alt="play"
-									onClick={() => handlePlayPause()}
-								/>
+								<>
+									<img
+										className="play-btn"
+										src={playBtnImgSrc}
+										alt="play"
+										onClick={() => handlePlayPause(index, { on: "btn" })}
+									/>
+									<img
+										className="skip-btn"
+										src={require("../../../assets/icons/skipbtn.png")}
+										alt="skip"
+										onClick={() => handlePlayPause(index, { on: "skipbtn" })}
+									/>
+									<img
+										className="prev-btn"
+										src={require("../../../assets/icons/skipbtn.png")}
+										alt="skip"
+										onClick={() => handlePlayPause(index, { on: "prevbtn" })}
+									/>
+								</>
 							)}
 
 							<div className="track-name">{filename.split(".")[0]}</div>
