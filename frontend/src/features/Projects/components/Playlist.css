@@ -1,98 +1,97 @@
-.playlist-title {
-	font-family: "Bebas Neue", sans-serif;
-	text-align: center;
-	color: #c5c5c5;
-	margin: 50px;
-	padding-top: 15px;
-	user-select: none;
+#playlist-title {
+    font-family: "Bebas Neue", sans-serif;
+    text-align: center;
+    color: #c5c5c5;
+    margin: 50px;
+    user-select: none;
 }
 
 .playlist-container {
-	display: flex;
-	flex-direction: column;
-	width: 75%;
+    display: flex;
+    flex-direction: column;
+    width: 75%;
 }
 
 .playlist-container *:focus {
-	outline: none;
+    outline: none;
 }
 
 .track-container {
-	position: relative;
-	width: 100%;
-	margin-bottom: 80px;
+    position: relative;
+    width: 100%;
+    margin-bottom: 80px;
 }
 
 .play-btn {
-	position: absolute;
-	top: 50%;
-	transform: translate(0, -50%);
-	left: -70px;
-	width: 50px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    left: -70px;
+    width: 50px;
 }
 
 .skip-btn {
-	position: absolute;
-	top: 50%;
-	transform: translate(0, -50%);
-	left: 554px;
-	width: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    left: 554px;
+    width: 40px;
 }
 
 .prev-btn {
-	position: absolute;
-	top: 50%;
-	transform: translate(0, -50%) scaleX(-1);
-	left: 520px;
-	width: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%) scaleX(-1);
+    left: 520px;
+    width: 40px;
 }
 
 .track-name {
-	margin: 0;
-	padding: 0;
-	position: absolute;
-	top: 0;
-	left: 0;
-	transform: translate(0%, -100%);
-	font-family: "Bebas Neue", sans-serif;
-	font-size: 24px;
-	color: #c5c5c5;
-	user-select: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(0%, -100%);
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 24px;
+    color: #c5c5c5;
+    user-select: none;
 }
 
 @media only screen and (max-width: 600px) {
-	.track-container {
-		margin-bottom: 30px;
-	}
+    .track-container {
+        margin-bottom: 30px;
+    }
 
-	.play-btn {
-		width: 40px;
-		left: -48px;
-	}
+    .play-btn {
+        width: 40px;
+        left: -48px;
+    }
 
-	.play-btn:focus {
-		outline: none;
-	}
+    .play-btn:focus {
+        outline: none;
+    }
 
-	.prev-btn {
-		top: 35%;
-		left: 265px;
-		width: 35px;
-	}
+    .prev-btn {
+        top: 35%;
+        left: 265px;
+        width: 35px;
+    }
 
-	.skip-btn {
-		top: 65%;
-		left: 265px;
-		width: 35px;
-	}
+    .skip-btn {
+        top: 65%;
+        left: 265px;
+        width: 35px;
+    }
 
-	.playlist-title {
-		margin: 20px;
-		padding-top: 0;
-		padding-bottom: 20px;
-	}
+    .playlist-title {
+        margin: 20px;
+        padding-top: 0;
+        padding-bottom: 20px;
+    }
 
-	.track-name {
-		font-size: 18px;
-	}
+    .track-name {
+        font-size: 18px;
+    }
 }

@@ -1,118 +1,153 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-
-#container {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
+body,
+h1,
+h2 {
+    font-family: "Raleway", sans-serif;
 }
 
-#main-content {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	flex-grow: 1;
-	margin: 50px;
+h1 {
+    text-align: center;
 }
 
-.main-text {
-	font-family: "Bebas Neue", sans-serif;
-	font-size: 30px;
-	text-align: center;
-	color: #d3d3d3;
+body,
+html {
+    height: 100%;
 }
 
-#nav-bar {
-	background-color: #1a3030;
-	height: 80px;
-	margin: -10px;
-	margin-bottom: 20px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+p {
+    line-height: 2;
 }
 
-.nav-buttons {
-	list-style: none;
-	font-size: 30px;
-	color: #c5c5c5;
-	font-family: "Bebas Neue", sans-serif;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 50%;
-	margin: 0;
+header {
+    position: relative;
+    letter-spacing: 4px;
+    height: 100vh;
+    margin: -10px;
 }
 
-.nav-buttons li,
-.waveform,
-.play-btn,
-.skip-btn,
-.prev-btn {
-	user-select: none;
-	transition: filter 0.2s ease-in-out;
+nav {
+    display: inline;
+    height: 80px;
+    list-style: none;
+    font-size: 24px;
 }
 
-.nav-buttons li:hover,
-.waveform:hover,
-.play-btn:hover,
-.skip-btn:hover,
-.prev-btn:hover {
-	filter: brightness(1.2);
-	cursor: pointer;
-}
-
-footer {
-	height: 150px;
-	font-family: "roboto", sans-serif;
-	justify-content: center;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 20px;
-	margin: 20px;
-	color: #c5c5c5;
-}
-
-footer ul {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-footer li {
-	margin: 3px;
-}
-
-li a {
-	color: #c5c5c5;
-	text-decoration: none;
+.nav-bar ul {
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgba(29, 43, 24, 0.7);
 }
 
 ul {
-	list-style: none;
-	padding-left: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 0;
 }
 
-* {
-	-webkit-tap-highlight-color: transparent;
+li {
+    padding: 10px;
+    color: white;
+    cursor: pointer;
 }
 
-@media only screen and (max-width: 600px) {
-	#main-content {
-		padding: 0;
-		margin: 0;
-	}
+#frame-img {
+    border-radius: 4px;
+    filter: grayscale(50%);
+}
 
-	#nav-bar {
-		height: 70px;
-		margin-bottom: 0px;
-	}
+#trilha {
+    padding: 0.01em 16px;
+    text-align: center !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-	.nav-buttons {
-		font-size: 25px;
-		color: #c5c5c5;
-		width: 60%;
-		padding: 0 20px;
-	}
+.container {
+    padding: 0.01em 16px;
+    padding-top: 64px !important;
+    padding-bottom: 64px !important;
+}
+
+.content {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 980px;
+}
+
+#conteudo-video {
+    padding: 0.01em 16px;
+    padding-top: 64px !important;
+}
+
+.drum-txt {
+    text-shadow: 10px 10px 15px #000000;
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    width: 100vw;
+}
+
+.quote-txt {
+    text-align: center !important;
+    letter-spacing: 4px;
+}
+
+.bgimg,
+.bgimg2 {
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+.bgimg {
+    background-image: url("../assets/8.jpg");
+    filter: grayscale(30%);
+}
+.bgimg2 {
+    position: relative;
+    background-image: url("../assets/IMG_2820.JPG");
+    background-position: center bottom;
+    height: 100vh;
+    margin-right: -10px;
+    margin-left: -10px;
+}
+
+.video-responsive {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* padding-top: 50px; */
+}
+
+footer {
+    height: 50px;
+    font-family: "roboto", sans-serif;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+    color: #c5c5c5;
+}
+
+footer ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+footer li {
+    margin: 3px;
+}
+
+li a {
+    color: #c5c5c5;
+    text-decoration: none;
 }

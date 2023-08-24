@@ -1,17 +1,17 @@
-.video-responsive {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+/* .video-responsive {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 @media only screen and (max-width: 600px) {
-	.video-responsive {
-		margin-bottom: 20px;
-		width: 100%;
-	}
+    .video-responsive {
+        margin-bottom: 20px;
+        width: 100%;
+    }
 
-	.main-text {
-		font-size: medium;
-	}
-}
+    .main-text {
+        font-size: medium;
+    }
+} */

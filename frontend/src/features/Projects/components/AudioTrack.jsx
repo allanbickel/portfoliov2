@@ -3,55 +3,55 @@ import WaveSurfer from "wavesurfer.js";
 import "./AudioTrack.css";
 
 function AudioTrack({
-	filename,
-	index,
-	handlePlayPause,
-	setAudiotrackArray,
-	audiotrackArray,
+    filename,
+    index,
+    handlePlayPause,
+    setAudiotrackArray,
+    audiotrackArray,
 }) {
-	const [wavesurfer, setWavesurfer] = useState(null);
-	const containerRef = useRef(null);
+    const [wavesurfer, setWavesurfer] = useState(null);
+    const containerRef = useRef(null);
 
-	useEffect(() => {
-		const ws = WaveSurfer.create({
-			container: containerRef.current,
-			barWidth: 2,
-			progressColor: "#D6D6D6",
-			cursorWidth: 0,
-			waveColor: "#B4BBB4",
-			scrollParent: false,
-			normalize: true,
-		});
+    useEffect(() => {
+        const ws = WaveSurfer.create({
+            container: containerRef.current,
+            barWidth: 2,
+            progressColor: "#D6D6D6",
+            cursorWidth: 0,
+            waveColor: "#B4BBB4",
+            scrollParent: false,
+            normalize: true,
+        });
 
-		setWavesurfer(ws);
+        setWavesurfer(ws);
 
-		return () => {
-			ws.destroy();
-		};
-	}, []);
+        return () => {
+            ws.destroy();
+        };
+    }, []);
 
-	useEffect(() => {
-		const filepath = `https://storage.googleapis.com/ost_fda/rascunhos/${filename}`;
+    useEffect(() => {
+        const filepath = `../../../../../backend/audiotracks/${filename}`;
 
-		if (!audiotrackArray[index] && wavesurfer) {
-			wavesurfer.load(filepath);
-			setAudiotrackArray((prevArray) => [...prevArray, wavesurfer]);
-		}
+        if (!audiotrackArray[index] && wavesurfer) {
+            wavesurfer.load(filepath);
+            setAudiotrackArray((prevArray) => [...prevArray, wavesurfer]);
+        }
 
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [wavesurfer]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [wavesurfer]);
 
-	return (
-		<>
-			<div
-				className="waveform"
-				ref={containerRef}
-				onClick={() => handlePlayPause(index, { on: "click" })}
-				// onDoubleClick={() => handlePlayPause(index, { on: "dbclick" })}
-				id={index}
-			></div>
-		</>
-	);
+    return (
+        <>
+            <div
+                className="waveform"
+                ref={containerRef}
+                onClick={() => handlePlayPause(index, { on: "click" })}
+                // onDoubleClick={() => handlePlayPause(index, { on: "dbclick" })}
+                id={index}
+            ></div>
+        </>
+    );
 }
 
 export default AudioTrack;
